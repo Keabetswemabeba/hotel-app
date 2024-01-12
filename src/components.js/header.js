@@ -54,7 +54,7 @@ function Header() {
             </span>
             <br />
             <span style={{ fontWeight: "bolder", fontSize: "80px" }}>
-              AppleDew
+              COMFORTABLE STAY
             </span>
             <br />
             <span style={{ fontWeight: "bold", fontSize: "30px" }}>
@@ -69,7 +69,7 @@ function Header() {
         </div>
 
         <div className="facilities">
-          <h1>ABOUT APPLEDEW</h1>
+          <h1>ABOUT COMFORTABLE STAY</h1>
           <div className="appledew-content">
 
             <div>

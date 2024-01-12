@@ -7,7 +7,7 @@ import gym from '../images/The-gym.jpg'; // Replace with the actual path to your
 const Facilities = () => {
   return (
     <div className="facilities">
-      <h1>ABOUT APPLEDEW</h1>
+      <h1>ABOUT COMFORTABLE STAY</h1>
       <div className="appledew-content">
         <div>
           <p>
