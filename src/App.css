@@ -1,0 +1,453 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    width: 100%;
+  }
+  
+  .form-group {
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .form-group input {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .form-group button {
+    width: 100%;
+  }
+
+  .password-container {
+    width: 100%;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.form-group{
+  background-color: black;
+  padding: 30px;
+  color: white;
+  border-radius: 5px;
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+
+
+}
+.form-group input{
+  margin-bottom: 10px;
+  padding: 5px;
+  width: 300px;
+  max-width: 100%;
+}
+.form-group button{
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  border: blue;
+  margin-top: 10px;
+}
+.form-group h2{
+  color: white;
+  margin-bottom: 10px;
+}
+.register-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+.form-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.password-container{
+  position: relative;
+}
+.password-toggle{
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.hotel-img{
+  width: 100%;
+  height: 100vh;
+}
+.backHotel{
+  width: 100%;
+  height: 100vh;
+}
+.nav{
+position: absolute;
+top: 0;
+right: 0;
+display: flex;
+}
+.list{
+margin-top: 10px;
+}
+.list ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+.list ul li{
+  margin-right: 10px;
+  color: white;
+  font-size: 25px;
+}
+.list ul li:hover{
+ text-decoration: underline;
+}
+.left-text{
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 24px;
+  
+}
+.facilities{
+  text-align: center;
+ 
+}
+
+.facilities h1{
+  text-align: center;
+}
+.facilities-image{
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+}
+.room-img{
+  width: 100%;
+  height: 100vh;
+
+}
+
+
+
+
+.register-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+} 
+.booking-details span{ 
+  margin: 10px;
+  position: absolute;
+  top: 70px;
+  left: 425px;
+  font-family: bold;
+  color: black;
+}
+.reserve-room{
+  margin: 5px;
+  position: absolute;
+  top:240px ;
+  left: 425px;
+
+}
+.btn-reserve-room{
+  top: 140px;
+  position: absolute;
+  left: 430px;
+  background-color: chocolate;
+  border-radius: 5px;
+  padding: 10px 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: -4px;
+}
+
+.btn-book{
+  position: relative;
+  top: 170px;
+  left: 350px;
+  background-color: chocolate;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  margin-top: -40px;
+  margin-left: 20px;
+  border-color: chocolate;
+  width: 20%;
+}
+.btn-reserve{
+  position: relative;
+  top: 260px;
+  left: 700px;
+  background-color: rgb(233, 146, 69);
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  margin-top: -40px;
+  margin-left: 20px;
+  border-color: chocolate;
+  width: 20%;
+}
+.features{
+  text-align: right;
+  margin-right: 230px;
+  font-size: 12px;
+  margin-top: 40px;
+  margin-left: 10px;
+
+}
+
+.features h4{
+  padding: 4px;
+  top: 10px;
+  margin-left: 100px;
+  
+  
+}
+
+.input-group{
+  position: absolute;
+  left: 780px;
+  top: 70px;
+}
+.btn-minus,
+.btn-minus2,
+.btn-minus3{
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+}
+.btn-plus,
+.btn-plus2,
+.btn-plus3{
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  
+
+}
+
+.number,
+.number2,
+.number3{
+  border: none;
+  width: 40px ;
+  margin-left: 40px; 
+}
+.input-group1{
+  position: absolute;
+  left: 780px;
+  top: 110px;
+
+}
+.input-group2{
+  position: absolute;
+  left: 780px;
+  top: 150px;
+
+}
+.reserve-price{
+  position: absolute;
+  top: 220px ;
+  left: 760px;
+
+}
+.reserve-booking-time{
+  position: absolute;
+  top: 225px;
+  left: 850px;
+  font-weight: lighter;
+  font-size: 14px;
+
+}
+.page-layout{
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 480px;
+  left: 50%;
+}
+.home{
+  position: relative;
+  top: 45px;
+  left: 10px;
+  background-color: chocolate;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 20px;
+  margin-top: -40px;
+  margin-left: 10px;
+  border-color: chocolate;
+  width: 180px;
+ 
+
+}
+
+@media (min-width: 768px) {
+  .text-name {
+    font-size: 80px;
+  }
+
+  .facilities p {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .list ul {
+    flex-direction: column;
+  }
+
+  .text-name {
+    font-size: 60px;
+    margin-top: 20px;
+  }
+
+  .facilities p {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .nav {
+    display: none; 
+  }
+  .text-name {
+    font-size: 40px;
+    margin-top: 10px;
+  }
+
+  .facilities h1 {
+    font-size: 24px;
+    margin-top: 20px;
+  }
+
+  .facilities p {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+}
+@media (min-width: 768px) {
+  .list ul {
+    display: flex;
+  }
+
+  .list li {
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .list ul {
+    flex-direction: column;
+  }
+
+  .list li {
+    margin-bottom: 10px;
+  }
+}
+nav {
+  background-color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.menu-toggle {
+  cursor: pointer;
+  color: white;
+  font-size: 24px;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+}
+
+.menu li {
+  margin-right: 20px;
+}
+.menu.active ul {
+  flex-direction: column;
+  display: block;
+}
+
+.menu.active li {
+  margin: 10px 0;
+  font-size: 18px;
+  color: white;
+}
+
+.menu-toggle i {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .menu ul {
+    display: none;
+  }
+}
