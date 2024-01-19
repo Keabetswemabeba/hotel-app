@@ -11,7 +11,10 @@ import Footer from "./footer";
 function RoomReserv() {
   const [ratings, setRatings] = useState(0);
   const [rooms, setRooms] = useState([]);
+  const [availableRooms, setAvailableRooms] = useState([]);
   const [favorites, setFavorites] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredRooms, setFilteredRooms] = useState([]);
 
   const navigate = useNavigate();
 
@@ -23,6 +26,10 @@ function RoomReserv() {
     setRatings(rating);
   };
 
+  const handleSearchInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
   const getRoomDetails = async () => {
     try {
       const querySnapShot = await getDocs(collection(db, "rooms"));
@@ -31,7 +38,15 @@ function RoomReserv() {
         ...doc.data(),
         isFavorite: false,
       }));
+
+      const availableRooms = data.filter((room) => room.availability === true);
+      const filteredRooms = availableRooms.filter((room) =>
+        room.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+
       setRooms(data);
+      setAvailableRooms(availableRooms);
+      setFilteredRooms(filteredRooms);
     } catch (error) {
       console.log(error.message);
     }
@@ -51,12 +66,10 @@ function RoomReserv() {
 
   return (
     <div>
-      <Navigation/>
+      <Navigation />
       <div className="room-img-container">
         <img className="room-img" alt="room" src={main} />
       </div>
-
-    
 
       <div className="left-text">
         <div className="text-name">
@@ -91,17 +104,24 @@ function RoomReserv() {
       </div>
 
       <div className=" AppleDew-content">
-        <h1>AT Comfortable Stay</h1>
+        <h1>AT COMFORT STAY</h1>
       </div>
 
       <div className="a">
+        <input
+          type="text"
+          placeholder="Search for rooms..."
+          value={searchQuery}
+          onChange={handleSearchInputChange}
+        />
+
         {rooms.map((data) => (
           <div key={data.id} className="booking-box">
             <div className="book-room">
               <img
-                className="booking-pic"
-                alt="book"
-                src="https://firebasestorage.googleapis.com/v0/b/hotel-app-3b9df.appspot.com/o/roomImage%2FRoom.jpg?alt=media&token=28e7e5ca-89b0-4d7c-bf12-8155c29e78fe"
+                className="booking-pick"
+                src={data.imageUrl}
+                alt="Room"
               />
             </div>
             <div className="room-details">
@@ -110,10 +130,10 @@ function RoomReserv() {
                 <h3>{data.description}</h3>
               </div>
               <div className="price">
-                <div className="room-price">
+                <div className="roomk-price">
                   <h3>R{data.price}</h3>
                 </div>
-                <div className="room-booking-time">
+                <div className="room-bookingk-time">
                   <h5>/night</h5>
                 </div>
               </div>
@@ -125,7 +145,7 @@ function RoomReserv() {
                   <h6>(7 Reviews)</h6>
                 </div>
               </div>
-              <div className="favorite">
+              <div className="favoritek">
                 <i
                   className={`fa fa-heart${data.isFavorite ? " active" : ""}`}
                   aria-hidden="true"
@@ -147,7 +167,9 @@ function RoomReserv() {
                 {[1, 2, 3, 4, 5].map((star) => (
                   <i
                     key={star}
-                    className={`fa fa-star${star <= ratings ? " star-active" : ""}`}
+                    className={`fa fa-star${
+                      star <= ratings ? " star-active" : ""
+                    }`}
                     onClick={() => handleStarClick(star)}
                     style={{ cursor: "pointer" }}
                   ></i>
@@ -157,7 +179,8 @@ function RoomReserv() {
           </div>
         ))}
       </div>
-      <Footer/>
+      <br></br>
+      <Footer />
     </div>
   );
 }

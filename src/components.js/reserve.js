@@ -40,7 +40,7 @@ function Reserve() {
       navigate("/reserveDetails", {
         state: {
           bookedRoom: roomData,
-          title: roomData.tittle,
+          title: roomData.title,
           description: roomData.description,
           price: roomData.price,
           
@@ -72,7 +72,7 @@ function Reserve() {
         <div className="booking-box" key={bookedRoom.id}>
           <h4 className="book-head">{bookedRoom.title}</h4>
           <div className="reserve-details">
-            <h8>{bookedRoom.description}</h8>
+            <h3>{bookedRoom.description}</h3>
           </div>
           <div className="btns-reserve">
             <button
@@ -87,92 +87,15 @@ function Reserve() {
               </Link>
             </button>
           </div>
-          {/* <div className="features">
-            <h4 className="children">Children</h4>
-            <br></br>
-            <h4 className="adult">Adults</h4>
-            <br></br>
-            <h4 className="nights">Nights</h4>
-            <br></br>
-          </div>
-          <div className="input-group">
-            <input
-              type="button"
-              value="- "
-              onClick={() => handDecrement(0)}
-              className="btn-minus"
-            ></input>
-            <input
-              type="number"
-              value={bookedRoom.quantity}
-              className="number"
-              step="1"
-              max="10"
-              name="quantity"
-              readOnly
-            ></input>
-            <input
-              type="button"
-              value="+ "
-              onClick={() => handIncrement(0)}
-              className="btn-plus"
-            ></input>
-          </div> */}
-          {/* <div className="input-group1">
-            <input
-              type="button"
-              value="-"
-              onClick={() => handDecrement(0)}
-              className="btn-minus"
-            ></input>
-            <input
-              type="number"
-              value={bookedRoom.quantity}
-              className="number"
-              step="1"
-              max="10"
-              name="quantity"
-              readOnly
-            ></input>
-            <input
-              type="button"
-              value="+ "
-              onClick={() => handIncrement(0)}
-              className="btn-plus"
-            ></input>
-          </div>
-          <div className="input-group2">
-            <input
-              type="button"
-              value="- "
-              onClick={() => handDecrement(0)}
-              className="btn-minus"
-            ></input>
-            <input
-              type="number"
-              value={bookedRoom.quantity}
-              className="number"
-              step="1"
-              max="10"
-              name="quantity"
-              readOnly
-            ></input>
-            <input
-              type="button"
-              value="+ "
-              onClick={() => handIncrement(0)}
-              className="btn-plus"
-            ></input>
-          </div> */}
-          <div className="reserve-price">
-            <h3>R{bookedRoom.price}</h3>
-          </div>
           <div className="reserve-booking-time">
             <h5>total</h5>
           </div>
+          <div className="reserve-price">
+            <h3>R{bookedRoom.price}</h3>
+          </div>
 
           <div className="book-room">
-            <img className="booking-pic" alt="book" src={room}></img>
+            <img className="booking-pic" alt="book" src={bookedRoom.imageUrl}></img>
           </div>
         </div>
       ) : null}

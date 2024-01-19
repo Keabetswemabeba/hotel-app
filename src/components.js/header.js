@@ -3,9 +3,6 @@ import { Link } from "react-router-dom";
 import hotel from "../images/hotel.jpg";
 import gym from "../images/The-gym.jpg";
 import pool from "../images/swimmingPool.jpg";
-import spa from "../images/spa.jpg";
-import restaurants from "../images/restaurants.jpg";
-import laundry from "../images/LAUNDRY.jpg";
 import appledew from '../images/appledew.png';
 import facebook from '../images/facebook icon 1.png';
 import instagram from '../images/instagram icon 1.png'
@@ -44,7 +41,6 @@ function Header() {
           <img className="hotel-img" alt="hotel" src={hotel} />
           <img className="hotel-img" alt="gym" src={gym} />
           <img className="hotel-img" alt="pool" src={pool} />
-          {/* Add more images as needed */}
         </Slider>
 
         <div className="left-text">
@@ -54,7 +50,7 @@ function Header() {
             </span>
             <br />
             <span style={{ fontWeight: "bolder", fontSize: "80px" }}>
-              COMFORTABLE STAY
+              COMFORT STAY
             </span>
             <br />
             <span style={{ fontWeight: "bold", fontSize: "30px" }}>
@@ -69,7 +65,7 @@ function Header() {
         </div>
 
         <div className="facilities">
-          <h1>ABOUT COMFORTABLE STAY</h1>
+          <h1>ABOUT COMFORT STAY</h1>
           <div className="appledew-content">
 
             <div>
@@ -105,38 +101,6 @@ function Header() {
             </div>
 
           </div>
-          {/* <div>
-            <img className="facilities-image" alt="gym" src={gym} />
-            <h1>THE GYM</h1>
-          </div>
-        </div>
-
-        <div className="facilities">
-          <div>
-            <img className="facilities-image" alt="pool" src={pool} />
-            <h1>POOLSIDE BAR</h1>
-          </div>
-        </div>
-
-        <div className="facilities">
-          <div>
-            <img className="facilities-image" alt="pool" src={spa} />
-            <h1>THE SPA</h1>
-          </div>
-        </div>
-
-        <div className="facilities">
-          <div>
-            <img className="facilities-image" alt="pool" src={restaurants} />
-            <h1>RESTAURANT</h1>
-          </div>
-        </div>
-
-        <div className="facilities">
-          <div>
-            <img className="facilities-image" alt="pool" src={laundry} />
-            <h1>LAUNDRY</h1>
-          </div> */}
         </div>
       </div>
       <Footer />

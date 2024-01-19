@@ -58,6 +58,13 @@
     background-color: #555;
     color: #ffcc00;
   }
+  .btn {
+    height: 30px;
+    width: 100px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
   
   /* Media query for responsiveness */
   @media (max-width: 768px) {

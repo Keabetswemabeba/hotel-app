@@ -45,7 +45,7 @@ function ReservationDetails() {
       // Include roomName in formData
       const dataToSave = {
         ...formData,
-        roomName: title,
+        title: title,
         description,
         price,
       };
