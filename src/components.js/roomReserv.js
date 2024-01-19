@@ -21,7 +21,7 @@ function RoomReserv() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getRoomDetails();
+    getFilteredRoomDetails();
   }, []);
 
   const handleStarClick = (rating) => {
@@ -48,7 +48,7 @@ function RoomReserv() {
       const availableRooms = data.filter((room) => room.availability === true);
   
       // Apply price filters
-      const filteredRooms = availableRooms.filter((room) => {
+      const filteredRooms = rooms.filter((room) => {
         const roomPrice = parseFloat(room.price);
         const min = minPrice !== "" ? parseFloat(minPrice) : Number.MIN_VALUE;
         const max = maxPrice !== "" ? parseFloat(maxPrice) : Number.MAX_VALUE;

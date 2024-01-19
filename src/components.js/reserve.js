@@ -66,41 +66,53 @@ function Reserve() {
   };
 
   return (
-    <div>
-      <Navigation/>
-      {bookedRoom ? (
-        <div className="booking-box" key={bookedRoom.id}>
-          <h4 className="book-head">{bookedRoom.title}</h4>
-          <div className="reserve-details">
-            <h3>{bookedRoom.description}</h3>
-          </div>
-          <div className="btns-reserve">
-            <button
-              className=" btn-reserve"
-              onClick={() => reserveRoom(bookedRoom)}
-            >
-              <Link
-                style={{ color: "white", textDecoration: "none" }}
-                to="/reserve"
+      <div>
+        <Navigation />
+        {bookedRoom ? (
+          <div className="booking-box" key={bookedRoom.id}>
+            <h4 className="book-head">{bookedRoom.title}</h4>
+            <div className="reserve-details">
+              <h3>{bookedRoom.description}</h3>
+            </div>
+            <div className="reserve-more-details">
+              <p>It has a shower 🚿</p>
+              <p>Wardrobe</p>
+              <p>Extra blankets</p>
+              <p>White towels</p>
+              <p>Bathing Amnities</p>
+            </div>
+            <div className="btns-reserve">
+              <button
+                className=" btn-reserve"
+                onClick={() => reserveRoom(bookedRoom)}
               >
-                Reserve
-              </Link>
-            </button>
+                <Link
+                  style={{ color: "white", textDecoration: "none" }}
+                  to="/reserve"
+                >
+                  Reserve
+                </Link>
+              </button>
+            </div>
+            <div className="reserve-booking-time">
+              <h5>Total</h5>
+            </div>
+            <div className="reserve-price">
+              <h3>R{bookedRoom.price}</h3>
+            </div>
+    
+            <div className="book-room">
+              <img
+                className="booking-pic"
+                alt="book"
+                src={bookedRoom.imageUrl}
+              ></img>
+            </div>
           </div>
-          <div className="reserve-booking-time">
-            <h5>total</h5>
-          </div>
-          <div className="reserve-price">
-            <h3>R{bookedRoom.price}</h3>
-          </div>
-
-          <div className="book-room">
-            <img className="booking-pic" alt="book" src={bookedRoom.imageUrl}></img>
-          </div>
-        </div>
-      ) : null}
-    </div>
-  );
+        ) : null}
+      </div>
+    );
+    
 }
 
 export default Reserve;

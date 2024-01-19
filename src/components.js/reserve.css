@@ -62,6 +62,15 @@
     left: 345px;
     top: 50px;
   }
+  .reserve-more-details {
+    /* display: c; */
+    font-weight: normal;
+    font-size: 10px;
+    position: absolute;
+    left: 345px;
+    top: 100px;
+    align-self: center;
+  }
   
   .ratings {
     position: absolute;
