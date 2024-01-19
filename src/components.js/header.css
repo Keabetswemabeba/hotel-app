@@ -162,6 +162,9 @@ flex-shrink: 0;
   .appledew-content p {
     width: 100%;
   }
+  body {
+    width: 100%;
+  }
 }
 
 /* Animation Styles */
