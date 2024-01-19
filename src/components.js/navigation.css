@@ -88,5 +88,9 @@
     .nav-list.active {
       display: flex;
     }
+    .btn {
+      width: 20px;
+      height: 20px;
+    }
   }
   

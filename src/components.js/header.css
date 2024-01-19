@@ -159,6 +159,9 @@ flex-shrink: 0;
   .facilities p {
     font-size: 14px;
   }
+  .appledew-content p {
+    width: 100%;
+  }
 }
 
 /* Animation Styles */

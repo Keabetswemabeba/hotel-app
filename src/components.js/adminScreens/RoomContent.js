@@ -19,7 +19,7 @@ function RoomContent() {
   useEffect(() => {
     const fetchRoomData = async () => {
       try {
-        const roomsCollection = await getDocs(collection(db, 'Rooms'));
+        const roomsCollection = await getDocs(collection(db, 'rooms'));
         const roomsData = roomsCollection.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
         setRoomData(roomsData);
       } catch (error) {
@@ -34,16 +34,16 @@ function RoomContent() {
     // Find the room to edit from the roomData array
     const roomToEdit = roomData.find((room) => room.id === roomId);
     setEditingRoom(roomToEdit);
-    setEditedRoomImage(roomToEdit.RoomImage);
-    setEditedRoomDescription(roomToEdit.RoomDescription);
-    setEditedRoomPrice(roomToEdit.RoomPrice);
+    setEditedRoomImage(roomToEdit.imageUrl);
+    setEditedRoomDescription(roomToEdit.desciption);
+    setEditedRoomPrice(roomToEdit.price);
     setIsEditModalVisible(true);
   };
 
   const handleUpdateRoom = async () => {
     try {
       // Update the room in Firestore
-      const roomRef = doc(db, 'Rooms', editingRoom.id);
+      const roomRef = doc(db, 'rooms', editingRoom.id);
       await updateDoc(roomRef, {
         RoomImage: editedRoomImage,
         RoomDescription: editedRoomDescription,
@@ -53,7 +53,7 @@ function RoomContent() {
       console.log(`Room with ID ${editingRoom.id} updated successfully`);
 
       // Refresh the room data after update
-      const roomsCollection = await getDocs(collection(db, 'Rooms'));
+      const roomsCollection = await getDocs(collection(db, 'rooms'));
       const roomsData = roomsCollection.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setRoomData(roomsData);
 
@@ -68,11 +68,11 @@ function RoomContent() {
   const handleDeleteRoom = async (roomId) => {
     try {
       // Delete the room from Firestore
-      await deleteDoc(doc(db, 'Rooms', roomId));
+      await deleteDoc(doc(db, 'rooms', roomId));
       console.log(`Room with ID ${roomId} deleted successfully`);
 
       // Refresh the room data after deletion
-      const roomsCollection = await getDocs(collection(db, 'Rooms'));
+      const roomsCollection = await getDocs(collection(db, 'rooms'));
       const roomsData = roomsCollection.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setRoomData(roomsData);
     } catch (error) {
@@ -83,7 +83,7 @@ function RoomContent() {
   const handleAddRoom = async () => {
     try {
       // Add a new room to Firestore
-      await addDoc(collection(db, 'Rooms'), {
+      await addDoc(collection(db, 'rooms'), {
         name: newRoomName,
         RoomImage: newRoomImage,
         RoomDescription: newRoomDescription,
@@ -93,7 +93,7 @@ function RoomContent() {
       console.log(`New room added successfully`);
 
       // Refresh the room data after addition
-      const roomsCollection = await getDocs(collection(db, 'Rooms'));
+      const roomsCollection = await getDocs(collection(db, 'rooms'));
       const roomsData = roomsCollection.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setRoomData(roomsData);
 
@@ -121,11 +121,11 @@ function RoomContent() {
       <div className="room-container">
         {roomData.map((room) => (
           <div key={room.id} className="room-box">
-            <img src={room.RoomImage} alt={room.name} className="room-image" />
+            <img src={room.imageUrl} alt={room.title} className="room-image" />
             <div className="room-details">
-              <div className="room-name">{room.name}</div>
-              <div className="room-description">{room.RoomDescription}</div>
-              <div className="room-price">{`Price: ${room.RoomPrice}`}</div>
+              <div className="room-name">{room.title}</div>
+              <div className="room-description">{room.description}</div>
+              <div className="room-price">{`Price: ${room.price}`}</div>
               <div className="ActionButton">
                 <button onClick={() => handleEditRoom(room.id)}>Edit</button>
                 <button onClick={() => handleDeleteRoom(room.id)}>Delete</button>
