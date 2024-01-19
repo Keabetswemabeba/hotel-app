@@ -111,6 +111,13 @@
   .room-details {
     padding: 10px;
   }
+  .btn-book{
+    width: 100%;
+    height: 20px
+  }
+  .roomk-price{
+    width: 50px;
+  }
 
   .btns {
     flex-direction: column;
