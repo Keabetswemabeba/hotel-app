@@ -15,6 +15,8 @@ function RoomReserv() {
   const [favorites, setFavorites] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredRooms, setFilteredRooms] = useState([]);
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
 
   const navigate = useNavigate();
 
@@ -26,11 +28,15 @@ function RoomReserv() {
     setRatings(rating);
   };
 
-  const handleSearchInputChange = (event) => {
-    setSearchQuery(event.target.value);
+  const handleMinPriceChange = (event) => {
+    setMinPrice(event.target.value);
   };
 
-  const getRoomDetails = async () => {
+  const handleMaxPriceChange = (event) => {
+    setMaxPrice(event.target.value);
+  };
+
+  const getFilteredRoomDetails = async () => {
     try {
       const querySnapShot = await getDocs(collection(db, "rooms"));
       const data = querySnapShot.docs.map((doc) => ({
@@ -38,12 +44,17 @@ function RoomReserv() {
         ...doc.data(),
         isFavorite: false,
       }));
-
+  
       const availableRooms = data.filter((room) => room.availability === true);
-      const filteredRooms = availableRooms.filter((room) =>
-        room.title.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-
+  
+      // Apply price filters
+      const filteredRooms = availableRooms.filter((room) => {
+        const roomPrice = parseFloat(room.price);
+        const min = minPrice !== "" ? parseFloat(minPrice) : Number.MIN_VALUE;
+        const max = maxPrice !== "" ? parseFloat(maxPrice) : Number.MAX_VALUE;
+        return roomPrice >= min && roomPrice <= max;
+      });
+  
       setRooms(data);
       setAvailableRooms(availableRooms);
       setFilteredRooms(filteredRooms);
@@ -51,6 +62,7 @@ function RoomReserv() {
       console.log(error.message);
     }
   };
+  
 
   const toggleFavorite = (roomId) => {
     setRooms((prevRooms) =>
@@ -107,78 +119,86 @@ function RoomReserv() {
         <h1>AT COMFORT STAY</h1>
       </div>
 
-      <div className="a">
+      <div className="filter-container">
+        <label htmlFor="min-price">Min Price:</label>
         <input
-          type="text"
-          placeholder="Search for rooms..."
-          value={searchQuery}
-          onChange={handleSearchInputChange}
+          type="number"
+          id="min-price"
+          value={minPrice}
+          onChange={handleMinPriceChange}
         />
+        <label htmlFor="max-price">Max Price:</label>
+        <input
+          type="number"
+          id="max-price"
+          value={maxPrice}
+          onChange={handleMaxPriceChange}
+        />
+        <button onClick={getFilteredRoomDetails}>Apply Filters</button>
+      </div>
 
-        {rooms.map((data) => (
-          <div key={data.id} className="booking-box">
-            <div className="book-room">
-              <img
-                className="booking-pick"
-                src={data.imageUrl}
-                alt="Room"
-              />
+      {filteredRooms.map((data) => (
+        <div key={data.id} className="booking-box">
+          <div className="book-room">
+            <img
+              className="booking-pick"
+              src={data.imageUrl}
+              alt="Room"
+            />
+          </div>
+          <div className="room-details">
+            <h4 className="book-head">{data.title}</h4>
+            <div className="book-details">
+              <h3>{data.description}</h3>
             </div>
-            <div className="room-details">
-              <h4 className="book-head">{data.title}</h4>
-              <div className="book-details">
-                <h3>{data.description}</h3>
+            <div className="price">
+              <div className="roomk-price">
+                <h3>R{data.price}</h3>
               </div>
-              <div className="price">
-                <div className="roomk-price">
-                  <h3>R{data.price}</h3>
-                </div>
-                <div className="room-bookingk-time">
-                  <h5>/night</h5>
-                </div>
+              <div className="room-bookingk-time">
+                <h5>/night</h5>
               </div>
-              <div className="numberReviews">
-                <div className="rate">
-                  <h4>4.0</h4>
-                </div>
-                <div className="numberOfReviews">
-                  <h6>(7 Reviews)</h6>
-                </div>
+            </div>
+            <div className="numberReviews">
+              <div className="rate">
+                <h4>4.0</h4>
               </div>
-              <div className="favoritek">
-                <i
-                  className={`fa fa-heart${data.isFavorite ? " active" : ""}`}
-                  aria-hidden="true"
-                  onClick={() => toggleFavorite(data.id)}
-                ></i>
+              <div className="numberOfReviews">
+                <h6>(7 Reviews)</h6>
               </div>
+            </div>
+            <div className="favoritek">
+              <i
+                className={`fa fa-heart${data.isFavorite ? " active" : ""}`}
+                aria-hidden="true"
+                onClick={() => toggleFavorite(data.id)}
+              ></i>
+            </div>
 
-              <div className="btns">
-                <button onClick={() => book(data)} className="btn-book">
-                  <Link
-                    style={{ color: "white", textDecoration: "none" }}
-                    to="/reserve"
-                  >
-                    Book
-                  </Link>
-                </button>
-              </div>
-              <div className="ratings">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <i
-                    key={star}
-                    className={`fa fa-star${
-                      star <= ratings ? " star-active" : ""
+            <div className="btns">
+              <button onClick={() => book(data)} className="btn-book">
+                <Link
+                  style={{ color: "white", textDecoration: "none" }}
+                  to="/reserve"
+                >
+                  Book
+                </Link>
+              </button>
+            </div>
+            <div className="ratings">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <i
+                  key={star}
+                  className={`fa fa-star${star <= ratings ? " star-active" : ""
                     }`}
-                    onClick={() => handleStarClick(star)}
-                    style={{ cursor: "pointer" }}
-                  ></i>
-                ))}
-              </div>
+                  onClick={() => handleStarClick(star)}
+                  style={{ cursor: "pointer" }}
+                ></i>
+              ))}
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
       <br></br>
       <Footer />
     </div>
